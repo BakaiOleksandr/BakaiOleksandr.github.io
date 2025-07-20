@@ -44,17 +44,21 @@
                 </div>
             <!-- game -->
                 <div id="game-screen" class="screen ">
-                    <div id="home-btn">&lt;&lt;Home</div>
-                    <div id="header">Translate this word:</div>
+                    <div id="home-score-time-container">
+                        <div id="home-btn">&lt;&lt;Home</div>
+                        <p id="sh-score">Score:<span id="score"></span></p>
+                        <div id="timer"></div>
+                    </div>
+                    <div id="show-correct-word"></div>
                     <div id="word"></div>
                     <div id="input-field">
                         <input id="user-input" name="input" type="text"size="15"
                         maxlength="15" autocomplete="off"><br>
                         <input  id="submit-btn" type="button" value="Submit"> 
                     </div>
-                    <div id="show-correct-word"></div>
-                    <p id="sh-score">Score:<span id="score"></span></p>
-                    <p>Time left:<span id="timer"></span></p>
+                    
+                    
+                    
                 </div>
                 
                 <!-- end -->
