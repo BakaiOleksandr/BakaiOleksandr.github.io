@@ -9,6 +9,7 @@ html{
   width: 100%;
   margin: 0;
   padding: 0;
+  font-size: 19px;
 }
 body{
   overflow-x: hidden;
@@ -16,22 +17,22 @@ body{
   background-color: rgb(186, 176, 209);
   font-family: 'Courier New', Courier, monospace;
   padding: 0;
-  margin: 0;
+  margin: 2rem;
   overflow: hidden;
-  font-size: 3vw;
+  font-size: 1rem;
 }
 option, select{
   font-family: 'Courier New', Courier, monospace;
-  font-size: 3vw;
+  font-size: 1rem;
 }
 
 .input-correct {
-  border: 0.5vw solid #008000 !important;
+  border: 0.2rem solid #008000 !important;
   /* transition: border-color 2s ease; */
 }
 
 .input-wrong {
-  border: 0.5vw solid #ff0000 !important;
+  border: 0.2rem solid #ff0000 !important;
   /* transition: border-color 2s ease; */
 }
 
@@ -52,74 +53,61 @@ option, select{
   text-align: center;
 } 
 .screen div,h1,h2{
-  margin: 3vw 0;
+  margin: 1rem 0;
 }
 
-
-#start-button:hover{
-cursor: pointer;
-box-shadow: 2px 2px 5px var(--shadow);
-
-}
 #start-button {
   font-weight: bold;
-  font-size: 3vw;
+  font-size: 1rem;
   background-color: var(--yellow);
-  border: 0.3vw solid rgba(0, 0, 0, 0.5);
-  border-radius: 2vw;
-  margin: 4vw 2vw 2vw 2vw;
-  padding: 0 6vw;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  margin: 2rem 0 0 0;
+  padding: 0 2rem;
   font-family: 'Courier New', Courier, monospace;
 }
 #game-name{
-  font-size: 4vw;
+  font-size: 1.5rem;
   font-style: oblique;
 
 }
 /*game-screen*/
 #home-btn{
   align-self: flex-start;
-   margin-bottom: 2vw;
-   border-radius: 2vw;
+   margin: 1rem;
+   border-radius: 1rem;
    padding: 0 2vw;
    background-color: var(--shadow);
-}
-#home-btn:hover{
-  margin-left: 3vw;
-  cursor: pointer;
-  box-shadow: 2px 2px 5px var(--shadow);
+   font-size: 1.2rem;
 }
 #word{
-  font-size: 5vw;
+  font-size: 1rem;
   font-weight: bold;
 }
 #submit-btn{
-  font-size: 3vw;
-   font-weight: bold;
-  background-color: rgb(243, 183, 92);
-  border: 0.3vw solid rgba(0, 0, 0, 0.5);
-  border-radius: 2vw;
-  margin: 4vw 2vw 2vw 2vw;
-  padding: 0 6vw;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: var(--yellow);
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  margin: 2rem 0 0 0;
+  padding: 0 2rem;
   font-family: 'Courier New', Courier, monospace;
 }
-#submit-btn:hover{
-  box-shadow: 2px 2px 5px var(--shadow);
-}
 #show-correct-word{
-  font-size: 4vw;
-  margin: 2vw;
+  font-size: 1rem;
+  margin: 1rem;
   color:var(--red) ;
 }
 #sh-score{
-  margin: 0.5vw;
+  margin: 0;
 }
 #user-input{
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
-   border: 0.1vw solid black;
+   border: 0.1rem solid black;
     outline: none;
-    font-size: 3vw;
+    font-size: 1rem;
 }
 
 /*endScreen*/
@@ -127,61 +115,41 @@ box-shadow: 2px 2px 5px var(--shadow);
 
 #restart-button{
 font-weight: bold;
-  background-color: rgb(243, 183, 92);
-  border: 0.3vw solid rgba(0, 0, 0, 0.5);
-  border-radius: 2vw;
-  padding: 0 6vw;
-  font-family: 'Courier New', Courier, monospace;  
+  font-size: 1rem;
+  background-color: var(--yellow);
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  margin: 2rem 0 0 0;
+  padding: 0 2rem;
+  font-family: 'Courier New', Courier, monospace;
 }
+/*...........media 700px*/
+@media (min-width: 700px) {
+html{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 19px;
+}
+body{
+  margin: 1rem;
+}
+ #home-btn:hover{
+  margin-left: 3vw;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px var(--shadow);
+} 
+
+#submit-btn:hover{
+  box-shadow: 2px 2px 5px var(--shadow);
+} 
+ #start-button:hover{
+cursor: pointer;
+box-shadow: 2px 2px 5px var(--shadow);
+} 
 #restart-button:hover{
   box-shadow: 2px 2px 5px var(--shadow);
 }
-/*...........media*/
-@media (min-width: 700px) {
-#start-screen{
-  margin: 0.5vw;
-}
-#start-button{
-  margin: 2vw 0 0 0;
-}
-#to-language-select{
-  margin: 0.5vw;
-}
-#from-language{
-  margin: 0.5vw;
-}
-#language-select{
-  margin: 0.5vw;
-}
-#explanation{
-  margin: 0 0 1vw 0;
-}
-#game-name{
-  margin: 1vw 0;
-}
-#game-screen{
-  margin: 0.5vw 10vw;
-}
-#home-btn{
-  margin: 0.5vw;
-}
-#header{
-  margin: 0.5vw;
-}
-#word{
-  margin: 0.5vw;
-}
-#submit-btn{
-  margin: 4vw 0 0 0;
-}
-#sh-score{
-  margin: 0.5vw;
-}
-#input-field{
-  margin: 0.5vw;
-}
-#show-correct-word{
-  margin: 0.5vw;
-}
   }
+
  
