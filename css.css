@@ -49,10 +49,10 @@ option, select{
   justify-content: center;
   margin: 0;
   padding: 0;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 #timer{
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 #show-correct-word{
   color: tomato;
@@ -99,7 +99,7 @@ option, select{
    border-radius: 1rem;
    padding: 0;
    background-color: var(--shadow);
-   font-size: 1.2rem;
+   font-size: 0.7rem;
 }
 #word{
   font-size: 1rem;
@@ -154,7 +154,6 @@ body{
   margin: 2rem;
 }
  #home-btn:hover{
-  margin-left: 3vw;
   cursor: pointer;
   box-shadow: 2px 2px 5px var(--shadow);
 } 

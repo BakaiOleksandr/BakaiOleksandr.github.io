@@ -108,6 +108,11 @@ class Game{
 
         //check answer
         checkAnswer(){
+            const errorSound = new Audio('sounds/error.mp3');//soundError
+            errorSound.volume = 0.3;
+            const correctSound = new Audio('sounds/correct.wav');//soundCorrect
+            correctSound.volume = 0.7;
+                        
             const userAnswer = this.inputElement.value.trim().toLowerCase();
             const correctAnswer = this.ToLanguage[this.currentIndex].toLowerCase();
              this.inputElement.classList.remove('input-wrong','input-correct');//delete old classes css style
@@ -116,17 +121,24 @@ class Game{
                 this.score++;
                 this.scoreElement.textContent=this.score;
                 this.inputElement.classList.add('input-correct');//if answer is correct
+                correctSound.currentTime = 0;
+                correctSound.play();
+                
                 if(this.score===100){
+                 
                   this.endGame(true);//if player won endGame true
                   return;
                 }
             }else{
+                errorSound.currentTime = 0;
+                errorSound.play();
+                
                 this.inputElement.classList.add('input-wrong');//if answer is not correct
                 this.showCorrectWord.textContent = `${this.wordToTranslate.textContent} = ${correctAnswer}`;
                 this.submitBtn.disabled = true;
                 setTimeout(()=>{
                   this.submitBtn.disabled = false
-                },2000)
+                },2000);
 
             }
             setTimeout(() => {
@@ -147,10 +159,13 @@ class Game{
 
         //endGame
         endGame(isWin=false){
+            const winSound = new Audio('sounds/win.wav');
+            winSound.volume = 0.7;
             clearInterval(this.timerInterval);
             this.finalScoreEl.textContent=this.score;
             if(isWin){
               this.gameOver.textContent='You win!!!'
+              winSound.play();
             }else{
               this.gameOver.textContent='Game Over'
             }
