@@ -115,10 +115,15 @@ option, select{
   padding: 0 2rem;
   font-family: 'Courier New', Courier, monospace;
 }
+#show-correctword-container{
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  height: 70px;
+}
 #show-correct-word{
   font-size: 1rem;
-  margin: 1rem;
-  color:var(--red) ;
+  color:var(--red);
 }
 
 #user-input{

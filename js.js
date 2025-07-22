@@ -6,7 +6,7 @@ class Game{
         
         this.currentIndex = 0;//current index of array
         this.score = 0;
-        this.timeLeft = 300;// set 5minutes for timer
+        this.timeLeft = 600;// set 5minutes for timer
 
         //get html elements
         
@@ -57,7 +57,7 @@ class Game{
             //set index,score,time,input
             this.currentIndex=0;
             // this.score=0;
-            this.timeLeft=300;
+            this.timeLeft=600;
             this.scoreElement.textContent='0';
             this.shuffleWords();
             this.inputElement.value='';//instead textContent, value for input element
