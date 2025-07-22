@@ -74,7 +74,7 @@ class Game{
             //set index,score,time,input
             this.currentIndex=0;
             // this.score=0;
-            this.timeLeft=20;
+            this.timeLeft=600;
             this.scoreElement.textContent='0';
             this.shuffleWords();
             this.inputElement.value='';//instead textContent, value for input element
