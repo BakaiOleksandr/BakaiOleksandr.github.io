@@ -21,6 +21,15 @@ class Game{
         this.homeButton = document.getElementById('home-btn');
         this.showCorrectWord = document.getElementById('show-correct-word');
         this.gameOver = document.getElementById('game-over');
+        //wrong answer collector
+        this.wrongAnswers = [];
+        //wrong answers screen
+        this.wrongScreen = document.getElementById('wrong-screen');
+        this.showWrongScreenBtn = document.getElementById('show-wrongscreen');
+        this.goBackBtn = document.getElementById('back-to-endscreen');
+        //for Enter button
+        this.inputLocked=false;
+
 
         //get screens
         this.startScreen = document.getElementById("start-screen");
@@ -37,11 +46,19 @@ class Game{
         this.submitBtn.addEventListener('click',()=>this.checkAnswer());
 
         this.inputElement.addEventListener('keydown', (e) => {//submit with Enter key
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter'&& !this.inputLocked) {
         this.checkAnswer();
         }
         });
         this.homeButton.addEventListener('click',()=>window.location.reload());
+
+        //wrongScreen   events
+        this.showWrongScreenBtn.addEventListener('click',()=>{
+            this.switchScreen(this.wrongScreen);
+        });
+        this.goBackBtn.addEventListener('click',()=>{
+            this.switchScreen(this.endScreen);
+        })
     }
 
 
@@ -57,7 +74,7 @@ class Game{
             //set index,score,time,input
             this.currentIndex=0;
             // this.score=0;
-            this.timeLeft=600;
+            this.timeLeft=20;
             this.scoreElement.textContent='0';
             this.shuffleWords();
             this.inputElement.value='';//instead textContent, value for input element
@@ -72,7 +89,7 @@ class Game{
 
         //switch css style of screen to active, and others are not active
         switchScreen(activeScreen){
-            const screensArray = [this.startScreen,this.gameScreen,this.endScreen];//variable for screens array
+            const screensArray = [this.startScreen,this.gameScreen,this.endScreen,this.wrongScreen];//variable for screens array
             screensArray.forEach(screen=>{//go throw array, index of array is 'screen'
                 screen.classList.remove('active');//css class active -remove
              })
@@ -117,7 +134,7 @@ class Game{
             const correctAnswer = this.ToLanguage[this.currentIndex].toLowerCase();
              this.inputElement.classList.remove('input-wrong','input-correct');//delete old classes css style
             //add ++ to score
-            if(userAnswer===correctAnswer){
+            if(userAnswer===correctAnswer){//correct answer
                 this.score++;
                 this.scoreElement.textContent=this.score;
                 this.inputElement.classList.add('input-correct');//if answer is correct
@@ -129,14 +146,19 @@ class Game{
                   return;
                 }
             }else{
+                // wrong answer
+                this.wrongAnswers.push({word:this.FromLanguage[this.currentIndex],
+                correct:this.ToLanguage[this.currentIndex]});
                 errorSound.currentTime = 0;
                 errorSound.play();
                 
                 this.inputElement.classList.add('input-wrong');//if answer is not correct
                 this.showCorrectWord.textContent = `${this.wordToTranslate.textContent} = ${correctAnswer}`;
                 this.submitBtn.disabled = true;
+                this.inputLocked = true;//for blocking Enter
                 setTimeout(()=>{
-                  this.submitBtn.disabled = false
+                  this.submitBtn.disabled = false;
+                  this.inputLocked = false;
                 },2000);
 
             }
@@ -172,7 +194,23 @@ class Game{
              } else {
              this.gameOver.textContent = 'Not bad,try again';
              }
+             
+            this.showWrongAnswersArray();//creates array of WrongAnswers
             this.switchScreen(this.endScreen);
+        }
+        //method show wrong answers array on wrongScreen
+        showWrongAnswersArray(){
+        const wrongAnswersContainer=document.getElementById('wrong-answers');
+            if(this.wrongAnswers.length===0){
+                wrongAnswersContainer.innerHTML="";
+             }else{
+                let listOfWrongAnswers=this.wrongAnswers.map(function(item){
+                    return `<li>${item.word}-${item.correct}</li>`;
+                }).join('');
+                wrongAnswersContainer.innerHTML="<h3>Your mistakes:</h3><ul>"+
+                listOfWrongAnswers+"</ul>";
+                
+             }
         }
     }
     
