@@ -123,7 +123,6 @@ class Game{
                 this.inputElement.classList.add('input-correct');//if answer is correct
                 correctSound.currentTime = 0;
                 correctSound.play();
-                
                 if(this.score===100){
                  
                   this.endGame(true);//if player won endGame true
@@ -163,12 +162,16 @@ class Game{
             winSound.volume = 0.7;
             clearInterval(this.timerInterval);
             this.finalScoreEl.textContent=this.score;
-            if(isWin){
-              this.gameOver.textContent='You win!!!'
-              winSound.play();
-            }else{
-              this.gameOver.textContent='Game Over'
-            }
+             if (isWin || this.score === 100) {
+             this.gameOver.textContent = 'You win!';
+             winSound.play();
+             } else if (this.score >= 70) {
+             this.gameOver.textContent = 'Perfect!';
+             } else if (this.score >= 50) {
+             this.gameOver.textContent = 'Well done!';
+             } else {
+             this.gameOver.textContent = 'Not bad,try again';
+             }
             this.switchScreen(this.endScreen);
         }
     }
