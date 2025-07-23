@@ -159,13 +159,13 @@ class Game{
                 setTimeout(()=>{
                   this.submitBtn.disabled = false;
                   this.inputLocked = false;
-                },2000);
+                },3000);
 
             }
             setTimeout(() => {
             this.inputElement.classList.remove('input-wrong', 'input-correct');
             this.showCorrectWord.textContent = '';
-            }, 2000);
+            }, 3000);
             
             //MOVE TO NEXT WORD 
             this.currentIndex++;
