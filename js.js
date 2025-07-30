@@ -1,11 +1,12 @@
 let game = null;
+/////////////////////////////////////////////////
 class Game{
     constructor(FromLanguage,ToLanguage){
         this.FromLanguage = FromLanguage;//array
         this.ToLanguage = ToLanguage;//array
         
         this.currentIndex = 0;//current index of array
-        this.score = 0;
+        this.score = 99;
         this.timeLeft = 600;// set 5minutes for timer
 
         //get html elements
@@ -60,7 +61,7 @@ class Game{
             this.switchScreen(this.endScreen);
         })
     }
-
+////////////////////////////////////////////////////////////
 
         //Methods
         shuffleWords() {
@@ -140,8 +141,12 @@ class Game{
                 this.inputElement.classList.add('input-correct');//if answer is correct
                 correctSound.currentTime = 0;
                 correctSound.play();
+                 // Show balloons at specific scores
+                if ([30, 50, 70].includes(this.score)) {
+                this.callBallons();
+                }
+
                 if(this.score===100){
-                 
                   this.endGame(true);//if player won endGame true
                   return;
                 }
@@ -174,8 +179,69 @@ class Game{
             if(this.currentIndex<this.FromLanguage.length){
                 this.showWord();
             }else{
-                this.endGame();
+                this.currentIndex = 0; // начинаем с начала
+                this.shuffleWords(); // перемешиваем
+                this.showWord();
             }
+        }
+        //Create ballons method
+        callBallons(duration =2100){
+        // Удаляем старый контейнер, если он есть    
+        let oldContainer = document.getElementById("balloon-container");
+            if (oldContainer) oldContainer.remove();
+        // Create new ballons container
+        const balloonContainer = document.createElement("div");
+        balloonContainer.id = "balloon-container";
+        document.body.appendChild(balloonContainer);
+        // Styles of ballonsContainer
+        Object.assign(balloonContainer.style, {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100vh",
+        pointerEvents: "none",
+        display: "flex",
+        flexWrap: "wrap",
+        overflow: "hidden",
+        zIndex: 9999
+        });
+
+        function random(num) {
+        return Math.floor(Math.random() * num);
+        }
+
+        function getRandomStyles() {
+        let r = random(255);
+        let g = random(255);
+        let b = random(255);
+        let mt = random(200);
+        let ml = random(50);
+        let dur = duration/1000;
+        return `
+        background-color: rgba(${r},${g},${b},0.7);
+        color: rgba(${r},${g},${b},0.7); 
+        box-shadow: inset -7px -3px 10px rgba(${r - 10},${g - 10},${b - 10},0.7);
+        margin: ${mt}px 0 0 ${ml}px;
+        animation: float ${dur}s ease-in infinite
+        `;
+        }
+
+        function createBalloons(num) {
+        for (let i = num; i > 0; i--) {
+        let balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.cssText = getRandomStyles();
+        balloonContainer.append(balloon);
+        }
+        }
+
+        createBalloons(20);
+        // Удаляем контейнер через 2.1 сек
+        setTimeout(() => {
+        balloonContainer.remove();
+        }, duration);
+
         }
 
         //endGame
@@ -187,6 +253,8 @@ class Game{
              if (isWin || this.score === 100) {
              this.gameOver.textContent = 'You win!';
              winSound.play();
+             this.callBallons(10000);
+             
              } else if (this.score >= 70) {
              this.gameOver.textContent = 'Perfect!';
              } else if (this.score >= 50) {
