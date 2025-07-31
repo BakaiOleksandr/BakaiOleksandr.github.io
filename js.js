@@ -6,7 +6,7 @@ class Game{
         this.ToLanguage = ToLanguage;//array
         
         this.currentIndex = 0;//current index of array
-        this.score = 99;
+        this.score = 0;
         this.timeLeft = 600;// set 5minutes for timer
 
         //get html elements
