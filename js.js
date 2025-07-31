@@ -179,14 +179,14 @@ class Game{
             if(this.currentIndex<this.FromLanguage.length){
                 this.showWord();
             }else{
-                this.currentIndex = 0; // начинаем с начала
-                this.shuffleWords(); // перемешиваем
+                this.currentIndex = 0; // begins form the first iteration of array
+                this.shuffleWords(); // shuffle words again
                 this.showWord();
             }
         }
         //Create ballons method
         callBallons(duration =2100){
-        // Удаляем старый контейнер, если он есть    
+        // delete an old container if it exist   
         let oldContainer = document.getElementById("balloon-container");
             if (oldContainer) oldContainer.remove();
         // Create new ballons container
@@ -237,7 +237,7 @@ class Game{
         }
 
         createBalloons(20);
-        // Удаляем контейнер через 2.1 сек
+        // delete container after 2.1 seconds
         setTimeout(() => {
         balloonContainer.remove();
         }, duration);
@@ -266,7 +266,8 @@ class Game{
             this.showWrongAnswersArray();//creates array of WrongAnswers
             this.switchScreen(this.endScreen);
         }
-        //method show wrong answers array on wrongScreen
+
+        //method shows wrong answers array on wrongScreen
         showWrongAnswersArray(){
         const wrongAnswersContainer=document.getElementById('wrong-answers');
             if(this.wrongAnswers.length===0){
@@ -295,21 +296,10 @@ startButton.addEventListener('click', () => {
       return;
     }
 
-//     let fromYourLanguage, toSelectedLanguage;
-// //if player choose languages
-//     if (fromLang === "en" && toLang === "nl") {
-//       fromYourLanguage = FromLanguage.slice();//make a copy of array
-//       toSelectedLanguage = ToLanguage.slice();
-//     } else if (fromLang === "nl" && toLang === "en") {
-//       fromYourLanguage = ToLanguage.slice();
-//       toSelectedLanguage = FromLanguage.slice();
-//     }
-
-
     let fromWords = null;
     let toWords = null;
 
-    // Простой if-else без Map
+    // if else ...if some language was choosen than ...
     if (fromLang === "en") fromWords = englishWords;
     if (fromLang === "nl") fromWords = dutchWords;
     if (fromLang === "ru") fromWords = russianWords;
