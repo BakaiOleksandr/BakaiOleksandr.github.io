@@ -267,6 +267,7 @@ body{
 
 #submit-btn:hover{
   box-shadow: 2px 2px 5px var(--shadow);
+  cursor: pointer;
 } 
  #start-button:hover{
 cursor: pointer;
